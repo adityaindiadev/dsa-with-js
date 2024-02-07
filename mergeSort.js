@@ -1,4 +1,5 @@
-let testArr = [5, 4, 3, 7, 6, 9]
+let testArr = [27, 14, 35, 9, 22, 48, 11, 31, 6, 17, 39, 5, 29, 42, 20, 8, 33, 16, 3, 25, 19, 46, 7, 12, 38, 2, 24, 41, 10, 30, 4, 21, 34, 18, 49, 15, 26, 37, 1, 43, 23, 13, 32, 45, 28, 36, 50, 40, 44, 47]
+
 
 let finalArr = []
 
@@ -8,7 +9,7 @@ let i = 0
 
 function divideBeforeMerge(arr = [], left, right) {
 
-    console.log("Step: ", a);
+    console.log("divideBeforeMerge Step: ", a);
     console.log("Left: ", left, " || ", "Right: ", right);
     console.log("\n");
 
@@ -27,8 +28,6 @@ function divideBeforeMerge(arr = [], left, right) {
 
     const mid = parseInt((left + right) / 2)
 
-
-
     divideBeforeMerge(arr, left, mid)
     divideBeforeMerge(arr, mid + 1, right)
 
@@ -39,52 +38,95 @@ function divideBeforeMerge(arr = [], left, right) {
 function merge(arr, leftArrStart, leftArrEnd, rightArrStart, rightArrEnd) {
 
 
-    while (leftArrStart < leftArrEnd && rightArrStart < rightArrEnd) {
+    console.log("merge Step: ", i);
 
-        console.log("Step: ", i);
+    console.log({ arr, leftArrStart, leftArrEnd, rightArrStart, rightArrEnd });
 
-        if (arr[leftArrStart] <= arr[rightArrStart]) {
+    const leftArrSize = leftArrEnd - leftArrStart + 1
+    const rightArrSize = rightArrEnd - rightArrStart + 1
 
-            console.log(arr[leftArrStart], arr[rightArrStart]);
-            finalArr[i] = arr[leftArrStart]
-            leftArrStart++
-            i++
+    let leftArr = new Array(leftArrSize)
+    let rightArr = new Array(rightArrSize)
+
+    // insert values to left temp array
+    for (let index = 0; index < leftArrSize; index++) {
+        leftArr[index] = arr[leftArrStart + index];
+
+    }
+
+    // insert values to right temp array
+    for (let index = 0; index < rightArrSize; index++) {
+        rightArr[index] = arr[rightArrStart + index];
+    }
+
+    console.log("leftArr", leftArr);
+    console.log("rightArr", rightArr);
+
+    let iIndex = 0
+    let jIndex = 0
+    let kIndex = leftArrStart
+
+    while (iIndex < leftArrSize && jIndex < rightArrSize) {
+
+        console.log("while");
+
+        if (leftArr[iIndex] <= rightArr[jIndex]) {
+
+            console.log("leftArr[iIndex] < rightArr[jIndex]");
+            arr[kIndex] = leftArr[iIndex]
+            iIndex++
+            kIndex++
 
         }
 
         else
         // (arr[leftArrStart] >= arr[rightArrStart]) 
         {
+            console.log("else");
 
-            finalArr[i] = arr[rightArrStart]
-            rightArrStart++
-            i++
+            arr[kIndex] = rightArr[jIndex]
+            jIndex++
+            kIndex++
+            console.log({kIndex});
+
 
         }
 
-        console.log("\n");
+
 
     }
 
-    while (leftArrStart < leftArrEnd) {
+    while (iIndex < leftArr.length) {
 
-        finalArr[i] = arr[leftArrStart]
-        leftArrStart++
-        i++
+        console.log("iIndex < leftArr.length");
 
-    }
+        arr[kIndex] = leftArr[iIndex]
+        iIndex++
+        kIndex++
+        console.log({kIndex});
 
-    while (rightArrStart < rightArrEnd) {
-
-        finalArr[i] = arr[rightArrStart]
-        rightArrStart++
-        i++
 
     }
 
+    while (jIndex < rightArr.length) {
+
+        console.log("jIndex < rightArr.length");
+
+        arr[kIndex] = rightArr[jIndex]
+        jIndex++
+        kIndex++
+        console.log({kIndex});
+
+
+    }
+
+    i++
+    console.log("After Merge Final Array: ", arr);
+    console.log("\n");
 }
 
 divideBeforeMerge(testArr, 0, testArr.length - 1)
 
-console.log("finalArr", finalArr);
-console.log("testArr", testArr);
+// console.log("testArr", testArr);
+console.log("finalArr", testArr);
+
