@@ -1,4 +1,4 @@
-//Make Largest Possible Number With Given Array
+//Make Largest Possible Number With Given Array with selection sort
 
 
 function findLargestPossibleNumber(arr) {
