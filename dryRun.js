@@ -1,58 +1,20 @@
-let leftArr = [4, 5];
-
-let rightArr = [4, 9, 12];
-
-let arr = [null, null, null, null];
-
-let i = 0
-
-let leftArrStart = 0;
-let rightArrStart = 0;
-
-let leftArrEnd = leftArr.length
-let rightArrEnd = rightArr.length
-
-while (leftArrStart < leftArrEnd && rightArrStart < rightArrEnd) {
-
-    console.log("Step: ", i);
-
-    if (leftArr[leftArrStart] <= rightArr[rightArrStart]) {
-
-        console.log(leftArr[leftArrStart], rightArr[rightArrStart]);
-        arr[i] = leftArr[leftArrStart]
-        leftArrStart++
-        i++
-
+// Define an object
+let myObject = {
+    value: 0,
+    increment: function(amount) {
+      this.value += amount;
+      return this; // Return the object itself for chaining
+    },
+    double: function() {
+      this.value *= 2;
+      return this; // Return the object itself for chaining
+    },
+    display: function() {
+      console.log(this.value);
+      return this; // Return the object itself for chaining
     }
-
-    else
-    // (leftArr[leftArrStart] >= rightArr[rightArrStart]) 
-    {
-
-        arr[i] = rightArr[rightArrStart]
-        rightArrStart++
-        i++
-
-    }
-
-    console.log("\n");
-
-}
-
-while (leftArrStart < leftArrEnd) {
-
-    arr[i] = leftArr[leftArrStart]
-    leftArrStart++
-    i++
-
-}
-
-while (rightArrStart < rightArrEnd) {
-
-    arr[i] = rightArr[rightArrStart]
-    rightArrStart++
-    i++
-
-}
-
-console.log(arr);
+  };
+  
+  // Chain multiple method calls
+  myObject.increment(5).double().display(); // Output: 10
+  
