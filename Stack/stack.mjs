@@ -45,7 +45,7 @@ export class Stack {
     push(elem) {
 
         this.#stackArr.push(elem)
-        // this.printElements("push")
+        this.printElements("push")
 
     }
 
@@ -58,13 +58,35 @@ export class Stack {
             return
         }
 
+        const elem = this.#stackArr.pop()
         this.printElements("pop")
-        return this.#stackArr.pop()
+        return elem
 
 
     }
 
     peak() {
+        if (this.#isStackEmpty()) {
+
+            // console.log("Stack is empty!");
+
+            // this.printElements("peak")
+
+            return
+        }
+        // console.log("Peak Element is: ", this.#stackArr[this.#stackArr.length - 1]);
+
+        // this.printElements("peak")
+
+
+        return this.#stackArr[this.#stackArr.length - 1]
+    }
+
+    isEmpty(){
+        return this.#stackArr.length === 0
+    }
+
+    peakIndex() {
         if (this.#isStackEmpty()) {
 
             console.log("Stack is empty!");
@@ -73,12 +95,12 @@ export class Stack {
 
             return
         }
-        console.log("Peak Element is: ", this.#stackArr[this.#stackArr.length - 1]);
 
-        this.printElements("peak")
+        return this.#stackArr.length - 1
+    }
 
-
-        return this.#stackArr[this.#stackArr.length - 1]
+    length() {
+        return this.#stackArr.length
     }
 
     #addElementAtTheBottomOfTheStack(arr = [], index, elementToAdd) {
@@ -135,83 +157,83 @@ export class Stack {
 
     }
 
-     #reverseStack(arr=[], index) {
+    #reverseStack(arr = [], index) {
 
         console.log("index: ", index)
-    
+
         if (index === arr.length) {
-    
+
             console.log("return")
-            
+
             return
         }
-    
-        this.#reverseStack(arr, index+1)
-    
-        const addIndex = (arr.length-1) - index
-    
+
+        this.#reverseStack(arr, index + 1)
+
+        const addIndex = (arr.length - 1) - index
+
         const tempElem = arr[addIndex]
-    
+
         if (index < addIndex) {
             return
         }
-    
-        console.log({index, addIndex, tempElem, arr})
-    
+
+        console.log({ index, addIndex, tempElem, arr })
+
         arr[addIndex] = arr[index]
-    
+
         arr[index] = tempElem
-    
+
         console.log("After Swap: ", arr)
-    
-        
-        
+
+
+
     }
 
-    reverseStack(){
+    reverseStack() {
         this.#reverseStack(this.#stackArr, 0)
 
         this.printElements("reverseStack")
     }
 
 
-    #reverseStackOptimized(arr=[], index) {
+    #reverseStackOptimized(arr = [], index) {
 
         console.log("index: ", index)
-    
-        const addIndex = (arr.length-1) - index
-    
+
+        const addIndex = (arr.length - 1) - index
+
         if (index > addIndex) {
             return
         }
-    
+
         if (index === arr.length) {
-    
+
             console.log("return")
-            
+
             return
         }
-    
-        
-    
+
+
+
         const tempElem = arr[addIndex]
-    
-    
-        console.log({index, addIndex, tempElem, arr})
-    
+
+
+        console.log({ index, addIndex, tempElem, arr })
+
         arr[addIndex] = arr[index]
-    
+
         arr[index] = tempElem
-    
+
         console.log("After Swap: ", arr)
-    
-        this.#reverseStackOptimized(arr, index+1)
-    
-        
-        
+
+        this.#reverseStackOptimized(arr, index + 1)
+
+
+
     }
 
-    reverseStackOptimized(){
+    reverseStackOptimized() {
         this.#reverseStackOptimized(this.#stackArr, 0)
         this.printElements("reverseStackOptimized")
     }
