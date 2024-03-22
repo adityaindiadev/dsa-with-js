@@ -50,7 +50,7 @@ const StaticTree = [{
 }];
 
 
-function traverse(tree) {
+function traverseUsingRecursion(tree) {
 
     // console.log(tree);
 
@@ -60,7 +60,7 @@ function traverse(tree) {
 
         if (item?.children?.length != 0) {
 
-            traverse(item.children)
+            traverseUsingRecursion(item.children)
 
         }
 
@@ -70,4 +70,23 @@ function traverse(tree) {
 
 }
 
-traverse(StaticTree)
+// traverseUsingRecursion(StaticTree)
+
+
+function traverseUsingLoops(tree) {
+    const stack = [...tree];
+    
+    while (stack.length > 0) {
+        const node = stack.pop();
+        console.log(node.value);
+        
+        if (node.children && node.children.length > 0) {
+            // Since stack is LIFO, we need to push children in reverse order
+            for (let i = node.children.length - 1; i >= 0; i--) {
+                stack.push(node.children[i]);
+            }
+        }
+    }
+}
+
+traverseUsingLoops(StaticTree);
