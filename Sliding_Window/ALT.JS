@@ -20,7 +20,7 @@ var findAnagrams = function (s, p) {
     }
 
     // check if all keys are marked as 0 in object
-    const checkIfObjAllZero = () => Object.values(obj).every(value => value === 0);
+    const checkIfObjAllZero = () => Object.values(obj).every(value => value <= 0);
 
     let left = 0
     let right = 0
@@ -38,7 +38,7 @@ var findAnagrams = function (s, p) {
 
         const rightPointerChar = s[right]
 
-        if (obj[rightPointerChar]) {
+        if (obj[rightPointerChar] != undefined) {
             obj[rightPointerChar] = obj[rightPointerChar] - 1
             console.log("obj[rightPointerChar] == 1", rightPointerChar, { obj });
         }
@@ -79,3 +79,8 @@ var findAnagrams = function (s, p) {
     return outputArray
 
 };
+
+const string = 'abaacbabc'
+const pattern = 'abc'
+
+console.log(findAnagrams(string, pattern));
