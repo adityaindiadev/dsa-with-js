@@ -64,9 +64,9 @@ var findAnagrams = function (s, p) {
 
         }
 
-        else {
+        // else {
             right++
-        }
+        // }
 
 
         loopCount++
@@ -80,7 +80,7 @@ var findAnagrams = function (s, p) {
 
 };
 
-const string = 'abaacbabc'
+const string = 'cbaebabacd'
 const pattern = 'abc'
 
 console.log(findAnagrams(string, pattern));

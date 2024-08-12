@@ -32,4 +32,4 @@ class Solution {
 
 // Example usage:
 const solution = new Solution();
-console.log(solution.findAnagrams("cbaebabacd", "abc")); // Output: [0, 6]
+console.log(solution.findAnagrams("abaacbabc", "abc")); // Output: [0, 6]
