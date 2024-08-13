@@ -1,6 +1,11 @@
-// https://leetcode.com/problems/find-all-anagrams-in-a-string/description/
+// https://leetcode.com/problems/find-all-anagrams-in-a-string/submissions/1353671533/
 
-var findAnagrams = function (s = '', p = '') {
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {number[]}
+ */
+var findAnagrams = function (s, p) {
 
     let loopCount = 1
 
@@ -9,11 +14,15 @@ var findAnagrams = function (s = '', p = '') {
     // put characters in hashmap
     for (let index = 0; index < p.length; index++) {
         const char = p[index]
-        obj[char] = 1
+
+        if (obj[char]) {
+            obj[char] = obj[char] + 1
+        } else
+            obj[char] = 1
     }
 
     // check if all keys are marked as 0 in object
-    const checkIfObjAllZero = () => Object.values(obj).every(value => value === 0);
+    const checkIfObjAllZero = () => Object.values(obj).every(value => value <= 0);
 
     let left = 0
     let right = 0
@@ -24,53 +33,52 @@ var findAnagrams = function (s = '', p = '') {
 
     while (right < s.length && left <= right) {
 
-        console.log(`Loop ${loopCount}: `, { left }, { right }, {obj});
+        console.log(`Loop ${loopCount}: `, { left }, { right }, { obj });
 
 
         let windowSize = (right - left) + 1
 
         const rightPointerChar = s[right]
 
-        if (obj[rightPointerChar] == 1) {
-            obj[rightPointerChar] = 0
-            console.log("obj[rightPointerChar] == 1",rightPointerChar,{ obj });
+        if (obj[rightPointerChar] != undefined) {
+            obj[rightPointerChar] = obj[rightPointerChar] - 1
+            console.log("obj[rightPointerChar] == 1", rightPointerChar, { obj });
         }
-        
-        
+
+
 
         if (windowSize == patternSize) {
             console.log("got pattern");
-            
+
             if (checkIfObjAllZero()) {
                 console.log("ObjAllZero");
-                
+
                 outputArray.push(left)
             }
 
             const leftPointerChar = s[left]
             if (obj[leftPointerChar] != undefined) {
                 console.log("obj[leftPointerChar] = 1", leftPointerChar);
-                
-                obj[leftPointerChar] = 1
+
+                obj[leftPointerChar] = obj[leftPointerChar] + 1
             }
             left++
 
         }
-        
-        else{
-            right++
-        }
 
-        
+        // else {
+            right++
+        // }
+
+
         loopCount++
 
         console.log('\n');
-        
+
     }
 
 
     return outputArray
-
 
 };
 
