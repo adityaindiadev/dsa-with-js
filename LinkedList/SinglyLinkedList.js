@@ -82,6 +82,28 @@ class LinkedList {
         }
     }
 
+    reverseThisList(){
+
+        let prev = null
+        let current = this.head
+        let next = current.next
+
+        while (next != null) {
+            
+            current.next = prev
+            prev = current
+            current = next
+            next = current.next
+
+        }
+
+        current.next = prev
+        this.head = current
+
+        return this.head
+
+    }
+
 }
 
 
@@ -91,11 +113,12 @@ singlyLinkedList.addToFront(2)
 singlyLinkedList.addToFront(3)
 singlyLinkedList.addToFront(4)
 singlyLinkedList.addToEnd(11)
-// singlyLinkedList.addToSpecificIndex(2,)
-// singlyLinkedList.getSize()
 singlyLinkedList.printLinkedList()
-singlyLinkedList.addToSpecificIndex(3,123)
+console.log(singlyLinkedList.reverseThisList());
 singlyLinkedList.printLinkedList()
-singlyLinkedList.addToSpecificIndex(1,25)
-singlyLinkedList.printLinkedList()
+
+// singlyLinkedList.addToSpecificIndex(3,123)
+// singlyLinkedList.printLinkedList()
+// singlyLinkedList.addToSpecificIndex(1,25)
+// singlyLinkedList.printLinkedList()
 // console.log(singlyLinkedList);
