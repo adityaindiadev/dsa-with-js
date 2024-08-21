@@ -14,7 +14,7 @@ class LinkedList {
 
     getSize() {
         console.log(this.size);
-        
+
         return this.size
     }
 
@@ -45,7 +45,7 @@ class LinkedList {
         this.size++
     }
 
-    addToSpecificIndex(indexToAddData, data) {
+    addAtSpecificIndex(indexToAddData, data) {
         if (indexToAddData < 0 || indexToAddData >= this.size) {
             console.log("Index is not valid");
             return
@@ -55,15 +55,15 @@ class LinkedList {
             this.addToFront(data)
             return
         }
-        
-        if (indexToAddData === this.size-1) {
-            this.addToEnd(data)
-            return
-        }
+
+        // if (indexToAddData === this.size - 1) {
+        //     this.addToEnd(data)
+        //     return
+        // }
 
         const newNode = new SinglyLinkedListNode(data)
         let current = this.head
-        for (let index = 0; index < indexToAddData-1; index++) {
+        for (let index = 0; index < indexToAddData - 1; index++) {
             current = current.next
         }
 
@@ -72,24 +72,62 @@ class LinkedList {
         this.size++
     }
 
-    printLinkedList(){
+    deleteAtSpecificIndex(indexToDelete) {
+        if (indexToDelete < 0 || indexToDelete >= this.size) {
+            console.log("Index is not valid");
+            return -1
+        }
+
+        if (indexToDelete === 0) {
+            this.head = this.head.next
+            this.size--
+            return
+        }
+
+
+        let current = this.head
+        for (let index = 0; index < indexToDelete - 1; index++) {
+            current = current.next
+        }
+
+        const val = current.next.data
+        current.next = current.next.next
+        this.size--
+        return val
+    }
+
+    getAtIndex(indexToGetData) {
+        if (indexToGetData < 0 || indexToGetData >= this.size) {
+            return -1
+        }
+
+        let current = this.head
+        for (let index = 0; index < indexToGetData; index++) {
+            current = current.next
+        }
+
+        return current.data
+
+    }
+
+    printLinkedList() {
         console.log('\n');
         let current = this.head
         while (current) {
             console.log(current.data);
-            
+
             current = current.next
         }
     }
 
-    reverseThisList(){
+    reverseThisList() {
 
         let prev = null
         let current = this.head
         let next = current.next
 
         while (next != null) {
-            
+
             current.next = prev
             prev = current
             current = next
@@ -115,10 +153,14 @@ singlyLinkedList.addToFront(4)
 singlyLinkedList.addToEnd(11)
 singlyLinkedList.printLinkedList()
 console.log(singlyLinkedList.reverseThisList());
+console.log("\n")
 singlyLinkedList.printLinkedList()
 
-// singlyLinkedList.addToSpecificIndex(3,123)
+console.log("\n", singlyLinkedList.deleteAtSpecificIndex(2));
+singlyLinkedList.printLinkedList()
+
+// singlyLinkedList.addAtSpecificIndex(3,123)
 // singlyLinkedList.printLinkedList()
-// singlyLinkedList.addToSpecificIndex(1,25)
+// singlyLinkedList.addAtSpecificIndex(1,25)
 // singlyLinkedList.printLinkedList()
 // console.log(singlyLinkedList);
