@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/zigzag-conversion/description/?envType=study-plan-v2&envId=top-interview-150
+// Solved by Aditya
 
 /**
  * @param {string} s
@@ -32,4 +33,4 @@ var convert = function (s, numRows) {
 };
 
 const s = "PAYPALISHIRING", numRows = 4
-console.log(convert(s, numRows));
+console.log(convert(s, numRows))
