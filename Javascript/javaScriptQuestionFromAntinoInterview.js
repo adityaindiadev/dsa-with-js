@@ -5,14 +5,15 @@
     })()
 }) (45);
 
+
+
+console.log("----------------------------");
 let hero = {
     powerLevel: 99,
     getPower() {
         return this.powerLevel;
     }
 }
-
-console.log("----------------------------");
 
 let getPower = hero.getPower;
 
@@ -25,11 +26,11 @@ console.log("----------------------------");
 const b = {
     name: "Vivek",
     f: function () {
-        var self = this;
+        let self = this;
         console.log(this.name);
         (function () {
             console.log(this.name);
-            console.log(this.name);
+            console.log(self.name);
         })();
     }
 }
