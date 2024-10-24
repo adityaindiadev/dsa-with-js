@@ -1,0 +1,2 @@
+React Native Task
+To create a reusable custom React component that handles infinite scrolling efficiently. This component will dynamically load additional data as the user scrolls down the page. We should use https://reqres.in/ to list the users in the infinite scroll with correct paging and no repeating of the users 
