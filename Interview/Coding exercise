@@ -1,0 +1,70 @@
+Coding exercise
+You are developing a text messaging system where messages can be split across multiple parts if they exceed a certain length. Each message part needs to be tagged with its position and total parts count. Given a message string and maximum length per part, split the message into parts and format each part with the pattern: '(n/N) message_part' where 'n' is the current part number and 'N' is the total number of parts. Each part must not exceed the maximum length including the added formatting text (e.g., '(1/2) '). Words should not be split mid-word, and each part should be as long as possible while respecting word boundaries and the maximum length constraint.
+
+EXAMPLE 1
+Input:message = 'This is a long message that needs to be split into multiple parts', maxLength = 20
+
+Output:['(1/3) This is a long', '(2/3) message that', '(3/3) needs to be split']
+
+Explanation:Message is split into 3 parts, each ≤ 20 characters including the '(n/3) ' prefix
+
+EXAMPLE 2
+Input:message = 'Short msg', maxLength = 15
+
+Output:['(1/1) Short msg']
+
+Explanation:Message fits in one part, so only formatted with (1/1) prefix
+
+Requirements
+1
+Input message should be split only at word boundaries (spaces)
+2
+Each part must include the format '(n/N) ' at the start
+3
+The length of each part including the format text must not exceed maxLength
+4
+Parts should be as long as possible while meeting the length constraint
+5
+Return an array of properly formatted message parts
+6
+Handle edge cases like single words longer than maxLength or empty strings
+
+
+
+Coding exercise
+Regenerated
+You are developing a message processing system that needs to handle message deduplication within a time window. Given a stream of messages where each message contains an ID and a timestamp (in seconds), implement a function that returns true if the message is unique within the last 'N' seconds, and false if it's a duplicate. A message is considered a duplicate if the same ID appears within the specified time window. Once a message becomes older than the time window, it should no longer be considered for duplicate detection.
+
+EXAMPLE 1
+Input:isUnique('msg1', 100, 5)
+isUnique('msg2', 101, 5)
+isUnique('msg1', 102, 5)
+
+Output:true
+true
+false
+
+Explanation:First msg1 at t=100 is unique. msg2 at t=101 is unique. Second msg1 at t=102 is duplicate as it's within 5 seconds of first msg1
+
+EXAMPLE 2
+Input:isUnique('msg1', 100, 5)
+isUnique('msg1', 106, 5)
+
+Output:true
+true
+
+Explanation:First msg1 at t=100 is unique. Second msg1 at t=106 is also unique because first msg1 is now outside 5-second window
+
+Requirements
+1
+Function should accept message ID (string), current timestamp (integer), and time window N (integer) as parameters
+2
+Return true if message is unique within last N seconds, false if duplicate
+3
+Maintain only relevant messages within the time window
+4
+Optimize for both time and space complexity
+5
+Handle edge cases (empty values, invalid timestamps)
+6
+Messages older than N seconds should not affect new messages with same ID
