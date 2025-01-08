@@ -18,7 +18,7 @@ Object.defineProperty(String.prototype, 'trueLen', {
     }
 });
 
-console.log("hi  ".trueLen); // Output: 2
+console.log("trueLen","hi  ".trueLen); // Output: 2
 
 console.log([].trueLength());
 
